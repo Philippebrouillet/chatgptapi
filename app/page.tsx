@@ -22,13 +22,12 @@ const createChatCompletion = (messages: ChatCompletionRequestMessage[]) => {
 export default function Home() {
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
+  const ref = useRef<HTMLUListElement>(null);
   const scrollToLastMessage = () => {
     setTimeout(() => {
       ref.current?.children[ref.current?.children.length - 1].scrollIntoView();
     }, 1);
   };
-
-  const ref = useRef<HTMLUListElement>();
   const mutation = useMutation(
     (newMessages: ChatCompletionRequestMessage[]) =>
       createChatCompletion(newMessages),

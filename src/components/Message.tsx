@@ -23,13 +23,7 @@ export const Message = ({ message }: MessageProps) => {
       <div className="w-12 h-12">
         <Image src={imageUrl} width={42} height={42} alt="Avatar" />
       </div>
-      <div
-        className={
-          isUser
-            ? "prose dark:prose-invert text-white w-full"
-            : "prose dark:prose-invert w-full"
-        }
-      >
+      <div className={"prose dark:prose-invert text-white w-full"}>
         <ReactMarkdown>{message.content}</ReactMarkdown>
       </div>
     </li>
