@@ -1,0 +1,37 @@
+import clsx from "clsx";
+import Image from "next/image";
+import { ChatCompletionRequestMessage } from "openai";
+import ReactMarkdown from "react-markdown";
+
+type MessageProps = {
+  message: ChatCompletionRequestMessage;
+};
+
+export const Message = ({ message }: MessageProps) => {
+  if (message.role === "system") return null;
+
+  const isUser = message.role === "user";
+
+  const imageUrl = isUser ? "/avatar.png" : "/ia.jpeg";
+
+  return (
+    <li
+      className={clsx("w-full flex gap-4 p-4", {
+        "bg-gray-700": isUser,
+      })}
+    >
+      <div className="w-12 h-12">
+        <Image src={imageUrl} width={42} height={42} alt="Avatar" />
+      </div>
+      <div
+        className={
+          isUser
+            ? "prose dark:prose-invert text-white w-full"
+            : "prose dark:prose-invert w-full"
+        }
+      >
+        <ReactMarkdown>{message.content}</ReactMarkdown>
+      </div>
+    </li>
+  );
+};
