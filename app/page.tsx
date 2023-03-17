@@ -52,7 +52,7 @@ export default function Home() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    scrollToLastMessage();
     const formData = new FormData(e.currentTarget);
     const user = String(formData.get("user"));
     const newMessage = {
